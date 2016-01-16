@@ -5,7 +5,7 @@
 
 C=/tmp/backupdir
 S=/system
-V=CyanogenMod-7
+V=Altair
 
 PROCEED=1;
 

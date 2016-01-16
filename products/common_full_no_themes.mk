@@ -1,7 +1,7 @@
-# Inherit common CM stuff
-$(call inherit-product, vendor/cyanogen/products/common.mk)
+# Inherit common Altair stuff
+$(call inherit-product, vendor/altair/products/common.mk)
 
-# CyanogenMod specific product packages
+# Altair specific product packages
 PRODUCT_PACKAGES += \
     CMWallpapers
 
@@ -9,7 +9,7 @@ PRODUCT_PACKAGES += \
 include frameworks/base/data/sounds/AllAudio.mk
 
 # Include extra dictionaries for LatinIME
-PRODUCT_PACKAGE_OVERLAYS += vendor/cyanogen/overlay/dictionaries
+PRODUCT_PACKAGE_OVERLAYS += vendor/altair/overlay/dictionaries
 
 # Default Ringtone
 PRODUCT_PROPERTY_OVERRIDES += \

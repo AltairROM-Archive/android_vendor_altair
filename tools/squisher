@@ -4,6 +4,14 @@
 # altair
 #
 
+CL_RED="\033[31m"
+CL_GRN="\033[32m"
+CL_YLW="\033[33m"
+CL_BLU="\033[34m"
+CL_MAG="\033[35m"
+CL_CYN="\033[36m"
+CL_RST="\033[0m"
+
 OUT_TARGET_HOST=`uname -a | grep Darwin`
 if [ -z "$OUT_TARGET_HOST" ]
 then
@@ -140,7 +148,7 @@ rm -rf $REPACK/ota/recovery
 # Determine what to name the new signed package
 	MODVERSION=`sed -n -e'/ro\.modversion/s/^.*Altair-//p' $REPACK/ota/system/build.prop`
 	: ${MODVERSION:=nightly}
-	OUTFILE=$OUT/cm-$MODVERSION.zip
+	OUTFILE=$OUT/Altair-$MODVERSION.zip
 
 # Pack it up and sign
 printf "Zipping package..."
@@ -162,10 +170,24 @@ echo
 img=`basename $OUTFILE`
 cd `dirname $OUTFILE`
 $MD5 $img >$img.md5sum
-echo
-echo "Package complete: $OUTFILE"
-cat $img.md5sum
-echo
+#echo
+#echo "Package complete: $OUTFILE"
+#cat $img.md5sum
+#echo
+echo ""
+echo $CL_YLW"═════════════════════════════════════════════════════════════════════════"$CL_RST
+echo $CL_GRN" █████╗ ██╗  ████████╗ █████╗ ██╗██████╗     ██████╗  ██████╗ ███╗   ███╗"$CL_RST
+echo $CL_GRN"██╔══██╗██║  ╚══██╔══╝██╔══██╗██║██╔══██╗    ██╔══██╗██╔═══██╗████╗ ████║"$CL_RST
+echo $CL_GRN"███████║██║     ██║   ███████║██║██████╔╝    ██████╔╝██║   ██║██╔████╔██║"$CL_RST
+echo $CL_GRN"██╔══██║██║     ██║   ██╔══██║██║██╔══██╗    ██╔══██╗██║   ██║██║╚██╔╝██║"$CL_RST
+echo $CL_GRN"██║  ██║███████╗██║   ██║  ██║██║██║  ██║    ██║  ██║╚██████╔╝██║ ╚═╝ ██║"$CL_RST
+echo $CL_GRN"╚═╝  ╚═╝╚══════╝╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝    ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝"$CL_RST
+echo $CL_YLW"═════════════════════════════════════════════════════════════════════════"$CL_RST
+echo $CL_CYN"Package out: "$CL_MAG $OUT$CL_RST
+echo $CL_CYN"Package zip: "$CL_MAG $img$CL_RST
+echo $CL_CYN"Package md5: "$CL_MAG" `cat $img.md5sum | cut -d ' ' -f 1`"$CL_RST
+echo $CL_CYN"Package size:"$CL_MAG" `ls -lah $img | cut -d ' ' -f 5`"$CL_RST
+echo $CL_YLW"═════════════════════════════════════════════════════════════════════════"$CL_RST
 )
 
 exit 0

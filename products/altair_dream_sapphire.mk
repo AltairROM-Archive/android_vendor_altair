@@ -1,0 +1,53 @@
+# Inherit AOSP device configuration for dream_sapphire.
+$(call inherit-product, device/htc/dream_sapphire/full_dream_sapphire.mk)
+
+# Inherit some common Altair stuff.
+$(call inherit-product, vendor/altair/products/common.mk)
+
+# Include GSM-only stuff
+$(call inherit-product, vendor/altair/products/gsm.mk)
+
+#
+# Setup device specific product configuration.
+#
+PRODUCT_NAME := altair_dream_sapphire
+PRODUCT_BRAND := google
+PRODUCT_DEVICE := dream_sapphire
+PRODUCT_MODEL := Dream/Sapphire
+PRODUCT_MANUFACTURER := HTC
+PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=FRG83 BUILD_FINGERPRINT=tmobile/opal/sapphire/sapphire:2.2.1/FRG83/60505:user/release-keys PRIVATE_BUILD_DESC="opal-user 2.2.1 FRG83 60505 release-keys"
+
+# Build kernel
+#PRODUCT_SPECIFIC_DEFINES += TARGET_PREBUILT_KERNEL=
+#PRODUCT_SPECIFIC_DEFINES += TARGET_KERNEL_DIR=kernel-msm
+#PRODUCT_SPECIFIC_DEFINES += TARGET_KERNEL_CONFIG=altair_msm_defconfig
+
+# Extra DS overlay
+PRODUCT_PACKAGE_OVERLAYS += vendor/altair/overlay/dream_sapphire
+
+# Add the CMWallpapers app
+PRODUCT_PACKAGES += CMWallpapers
+
+# This file is used to install the correct audio profile when booted
+PRODUCT_COPY_FILES += \
+    vendor/altair/prebuilt/dream_sapphire/etc/init.d/02audio_profile:system/etc/init.d/02audio_profile
+
+# Enable Compcache by default on D/S
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.compcache.default=18
+
+# Release name and versioning
+PRODUCT_RELEASE_NAME := DS
+PRODUCT_VERSION_DEVICE_SPECIFIC :=
+-include vendor/altair/products/common_versions.mk
+
+# Use the audio profile hack
+WITH_DS_HTCACOUSTIC_HACK := true
+
+#
+# Copy DS specific prebuilt files
+#
+PRODUCT_COPY_FILES +=  \
+    vendor/altair/prebuilt/mdpi/media/bootanimation.zip:system/media/bootanimation.zip \
+    vendor/altair/prebuilt/dream_sapphire/etc/AudioPara_dream.csv:system/etc/AudioPara_dream.csv \
+    vendor/altair/prebuilt/dream_sapphire/etc/AudioPara_sapphire.csv:system/etc/AudioPara_sapphire.csv
