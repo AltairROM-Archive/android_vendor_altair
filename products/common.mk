@@ -34,9 +34,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     AndroidTerm \
     FileManager \
-    CMParts \
-    CMStats \
-    CMUpdateNotify \
     DSPManager \
     libcyanogen-dsp \
     Pacman \
