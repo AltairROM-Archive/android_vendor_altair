@@ -2,8 +2,8 @@
 $(call inherit-product, vendor/altair/products/common.mk)
 
 # Altair specific product packages
-#PRODUCT_PACKAGES += \
-#    CMWallpapers
+PRODUCT_PACKAGES += \
+    Wallpapers
 
 # Bring in all audio files
 include frameworks/base/data/sounds/AllAudio.mk

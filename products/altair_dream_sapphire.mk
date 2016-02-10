@@ -25,8 +25,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_ID=FRG83 BUILD_FINGERPRINT=tmobile/opal/sa
 # Extra DS overlay
 PRODUCT_PACKAGE_OVERLAYS += vendor/altair/overlay/dream_sapphire
 
-# Add the CMWallpapers app
-#PRODUCT_PACKAGES += CMWallpapers
+# Add the Wallpapers app
+PRODUCT_PACKAGES += Wallpapers
 
 # This file is used to install the correct audio profile when booted
 PRODUCT_COPY_FILES += \
