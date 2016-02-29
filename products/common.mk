@@ -3,7 +3,7 @@ PRODUCT_NAME := altair
 PRODUCT_BRAND := altair
 PRODUCT_DEVICE := generic
 
-PRODUCT_PACKAGES += ADWLauncher
+#PRODUCT_PACKAGES += ADWLauncher
 
 ifdef ALTAIR_NIGHTLY
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -80,11 +80,17 @@ PRODUCT_COPY_FILES += \
     vendor/altair/prebuilt/common/xbin/powertop:system/xbin/powertop \
     vendor/altair/prebuilt/common/xbin/openvpn-up.sh:system/xbin/openvpn-up.sh
 
-PRODUCT_COPY_FILES += \
+#PRODUCT_COPY_FILES += \
 #    vendor/altair/prebuilt/common/etc/init.d/10apps2sd:system/etc/init.d/10apps2sd
 
 PRODUCT_COPY_FILES +=  \
-    vendor/altair/proprietary/RomManager.apk:system/app/RomManager.apk \
+    vendor/altair/packages/RomManager.apk:system/app/RomManager.apk
+
+# Add multiple launchers for users to choose from
+PRODUCT_COPY_FILES +=  \
+    vendor/altair/packages/HoloLauncher.apk:system/app/HoloLauncher.apk \
+    vendor/altair/packages/KitKatLauncher.apk:system/app/KitKatLauncher.apk \
+    vendor/altair/packages/OneLauncher.apk:system/app/OneLauncher.apk
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
