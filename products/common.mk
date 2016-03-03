@@ -86,6 +86,11 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES +=  \
     vendor/altair/packages/RomManager.apk:system/app/RomManager.apk
 
+# SuperSU
+PRODUCT_COPY_FILES += \
+    vendor/altair/prebuilt/common/UPDATE-SuperSU.zip:system/addon.d/UPDATE-SuperSU.zip \
+    vendor/altair/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon
+
 # Add multiple launchers for users to choose from
 PRODUCT_COPY_FILES +=  \
     vendor/altair/packages/HoloLauncher.apk:system/app/HoloLauncher.apk \
