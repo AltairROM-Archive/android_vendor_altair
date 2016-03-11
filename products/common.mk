@@ -91,11 +91,14 @@ PRODUCT_COPY_FILES += \
     vendor/altair/prebuilt/common/UPDATE-SuperSU.zip:system/addon.d/UPDATE-SuperSU.zip \
     vendor/altair/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon
 
+# Replacement camera and gallery
+PRODUCT_COPY_FILES += \
+    vendor/altair/packages/GalleryICS.apk:system/app/GalleryICS.apk \
+    vendor/altair/packages/CameraICS.apk:system/app/CameraICS.apk
+
 # Add multiple launchers for users to choose from
 PRODUCT_COPY_FILES +=  \
-    vendor/altair/packages/HoloLauncher.apk:system/app/HoloLauncher.apk \
-    vendor/altair/packages/KitKatLauncher.apk:system/app/KitKatLauncher.apk \
-    vendor/altair/packages/OneLauncher.apk:system/app/OneLauncher.apk
+    vendor/altair/packages/HoloLauncher.apk:system/app/HoloLauncher.apk
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
