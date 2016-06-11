@@ -1,10 +1,10 @@
-# Inherit common CM stuff
-$(call inherit-product, vendor/cm/config/common.mk)
+# Inherit common Altair stuff
+$(call inherit-product, vendor/altair/config/common.mk)
 
 PRODUCT_SIZE := mini
 
-# Include CM audio files
-include vendor/cm/config/cm_audio.mk
+# Include Altair audio files
+include vendor/altair/config/altair_audio.mk
 
 # Default notification/alarm sounds
 PRODUCT_PROPERTY_OVERRIDES += \

@@ -1,12 +1,12 @@
-# Inherit common CM stuff
-$(call inherit-product, vendor/cm/config/common.mk)
+# Inherit common Altair stuff
+$(call inherit-product, vendor/altair/config/common.mk)
 
 PRODUCT_SIZE := full
 
-# Include CM audio files
-include vendor/cm/config/cm_audio.mk
+# Include Altair audio files
+include vendor/altair/config/altair_audio.mk
 
-# Optional CM packages
+# Optional Altair packages
 PRODUCT_PACKAGES += \
     Galaxy4 \
     HoloSpiralWallpaper \
@@ -20,7 +20,7 @@ PRODUCT_PACKAGES += \
     PhotoPhase \
     Screencast
 
-# Extra tools in CM
+# Extra tools in Altair
 PRODUCT_PACKAGES += \
     7z \
     lib7z \
