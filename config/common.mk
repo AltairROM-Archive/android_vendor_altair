@@ -125,6 +125,12 @@ include vendor/altair/config/themes_common.mk
 # CMSDK
 include vendor/altair/config/cmsdk_common.mk
 
+# Debuggable by default
+PRODUCT_PROPERTY_OVERRIDES += \
+	persist.service.adb.enable=1 \
+	persist.service.debuggable=1 \
+	persist.sys.usb.config=adb
+
 # Required Altair packages
 PRODUCT_PACKAGES += \
     Development \
