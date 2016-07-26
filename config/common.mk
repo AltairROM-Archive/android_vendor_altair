@@ -137,6 +137,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Required Altair packages
 PRODUCT_PACKAGES += \
+    CMAudioService \
     Development \
     BluetoothExt \
     Profiles
