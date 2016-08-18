@@ -141,7 +141,8 @@ PRODUCT_PACKAGES += \
     Development \
     BluetoothExt \
     Profiles \
-    ThemeManagerService
+    ThemeManagerService \
+    WeatherManagerService
 
 # Optional Altair packages
 PRODUCT_PACKAGES += \
@@ -196,6 +197,16 @@ PRODUCT_PACKAGES += \
     strace \
     pigz
 
+# Custom off-mode charger
+ifneq ($(WITH_CM_CHARGER),false)
+PRODUCT_PACKAGES += \
+    charger_res_images \
+    cm_charger_res_images \
+    font_log.png \
+    libhealthd.cm
+endif
+
+# ExFAT support
 WITH_EXFAT ?= true
 ifeq ($(WITH_EXFAT),true)
 TARGET_USES_EXFAT := true
@@ -244,11 +255,12 @@ DEVICE_PACKAGE_OVERLAYS += vendor/altair/overlay/common
 
 PRODUCT_VERSION_MAJOR = 6.0
 PRODUCT_VERSION_MINOR = 1
+PRODUCT_VERSION_MAINTENANCE := 1
+
 ifeq ($(TARGET_VENDOR_SHOW_MAINTENANCE_VERSION),true)
-    PRODUCT_VERSION_MAINTENANCE := 1
+    CM_VERSION_MAINTENANCE := $(PRODUCT_VERSION_MAINTENANCE)
 else
-    # 0 is ignored
-    PRODUCT_VERSION_MAINTENANCE := 0
+    CM_VERSION_MAINTENANCE := 0
 endif
 
 ifdef ALTAIR_NIGHTLY
