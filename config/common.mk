@@ -129,7 +129,7 @@ PRODUCT_COPY_FILES += \
     vendor/altair/config/permissions/com.cyanogenmod.android.xml:system/etc/permissions/com.cyanogenmod.android.xml
 
 # Include Altair audio files
-include vendor/cm/config/altair_audio.mk
+include vendor/altair/config/altair_audio.mk
 
 # Theme engine
 include vendor/altair/config/themes_common.mk
