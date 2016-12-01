@@ -1,4 +1,5 @@
 # Copyright (C) 2016 The Altair ROM Project
+#           (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -26,3 +27,5 @@ FRAMEWORK_CM_API_NEEDS_UPDATE_TEXT := $(TOPDIR)vendor/altair/build/core/apicheck
 
 BUILD_MAVEN_PREBUILT := $(TOP)/vendor/altair/build/core/maven_artifact.mk
 PUBLISH_MAVEN_PREBUILT := $(TOP)/vendor/altair/build/core/maven_artifact_publish.mk
+
+BUILD_HTTP_PREBUILT := $(TOP)/vendor/altair/build/core/http_prebuilt.mk
