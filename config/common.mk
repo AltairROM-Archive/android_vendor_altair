@@ -311,7 +311,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
   ro.cm.version=$(PRODUCT_FULL_VERSION) \
   ro.cm.releasetype=$(ALTAIR_BUILDTYPE) \
   ro.modversion=$(ALTAIR_VERSION) \
-  ro.cmlegal.url=https://cyngn.com/legal/privacy-policy
+  ro.cmlegal.url=https://lineageos.org/legal
 
 -include vendor/cm-priv/keys/keys.mk
 
