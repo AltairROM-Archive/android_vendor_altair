@@ -96,6 +96,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 	persist.service.debuggable=1 \
 	persist.sys.usb.config=adb
 
+# Bootanimation
+PRODUCT_PACKAGES += \
+    bootanimation.zip
+
 # Required Altair packages
 PRODUCT_PACKAGES += \
     CMAudioService \
