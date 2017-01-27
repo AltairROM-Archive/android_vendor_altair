@@ -231,6 +231,11 @@ PRODUCT_PACKAGES += \
 endif
 endif
 
+# SuperSU
+PRODUCT_COPY_FILES += \
+    vendor/altair/prebuilt/common/UPDATE-SuperSU.zip:system/addon.d/UPDATE-SuperSU.zip \
+    vendor/altair/prebuilt/common/etc/init.d/99SuperSUDaemon:system/etc/init.d/99SuperSUDaemon
+
 DEVICE_PACKAGE_OVERLAYS += vendor/altair/overlay/common
 
 PRODUCT_VERSION_MAJOR = 6.0
