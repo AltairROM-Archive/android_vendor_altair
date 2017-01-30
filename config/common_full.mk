@@ -15,5 +15,5 @@ PRODUCT_PACKAGES += \
     PhotoPhase
 
 # Themes
-PRODUCT_PACKAGES += \
-    HexoLibre
+#PRODUCT_PACKAGES += \
+#    HexoLibre
