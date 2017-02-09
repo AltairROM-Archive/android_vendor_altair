@@ -169,10 +169,10 @@ echo
 (
 img=`basename $OUTFILE`
 cd `dirname $OUTFILE`
-$MD5 $img >$img.md5sum
+$MD5 $img >$img.md5
 #echo
 #echo "Package complete: $OUTFILE"
-#cat $img.md5sum
+#cat $img.md5
 #echo
 echo ""
 echo $CL_YLW"═════════════════════════════════════════════════════════════════════════"$CL_RST
@@ -185,7 +185,7 @@ echo $CL_GRN"╚═╝  ╚═╝╚══════╝╚═╝   ╚═╝  
 echo $CL_YLW"═════════════════════════════════════════════════════════════════════════"$CL_RST
 echo $CL_CYN"Package out: "$CL_MAG $OUT$CL_RST
 echo $CL_CYN"Package zip: "$CL_MAG $img$CL_RST
-echo $CL_CYN"Package md5: "$CL_MAG" `cat $img.md5sum | cut -d ' ' -f 1`"$CL_RST
+echo $CL_CYN"Package md5: "$CL_MAG" `cat $img.md5 | cut -d ' ' -f 1`"$CL_RST
 echo $CL_CYN"Package size:"$CL_MAG" `ls -lah $img | cut -d ' ' -f 5`"$CL_RST
 echo $CL_YLW"═════════════════════════════════════════════════════════════════════════"$CL_RST
 )
