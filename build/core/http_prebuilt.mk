@@ -25,7 +25,7 @@ ifeq ($(strip $(LOCAL_HTTP_MD5SUM)),)
   $(error LOCAL_HTTP_MD5SUM not defined.)
 endif
 
-PREBUILT_MODULE_ARCHIVE := vendor/cm/prebuilt/archive/$(LOCAL_MODULE)
+PREBUILT_MODULE_ARCHIVE := vendor/altair/prebuilt/archive/$(LOCAL_MODULE)
 
 PREBUILT_MODULE_FILE := $(PREBUILT_MODULE_ARCHIVE)/$(LOCAL_HTTP_FILENAME)
 
@@ -47,13 +47,11 @@ define curl-checksum
 endef
 
 define audit-checksum
+  echo "Downloading: $(filename) (version $(version)) -> $(filepath)"; \
   $(hide) if [ ! -f $(filepath) ]; then \
-            echo "Downloading: $(filename) (version $(version)) -> $(filepath)"; \
             $(call download-prebuilt-module, $(HTTP_FILE_URL),$(filepath)) \
           else \
-            temp_checksum=$(shell md5sum $(filepath) | cut -d ' ' -f1); \
-            if [ "$$temp_checksum" != "$(shell cat $(checksum) | cut -d ' ' -f1)" ]; then \
-              echo "Downloading: $(filename) (version $(version)) -> $(filepath)"; \
+            if [ "$(shell echo $(md5sum $(filepath)))" != "$(shell cat $(checksum) | cut -d ' ' -f1)" ]; then \
               rm -rf $(filepath); \
               $(call download-prebuilt-module, $(HTTP_FILE_URL),$(filepath)) \
             fi; \
@@ -64,7 +62,7 @@ endef
 # $(1) url
 # $(2) file output
 define download-prebuilt-module
-  ./vendor/cm/build/tasks/http_curl_prebuilt.sh $(1) $(2);
+  ./vendor/altair/build/tasks/http_curl_prebuilt.sh $(1) $(2);
 endef
 
 define cleanup

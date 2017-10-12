@@ -24,11 +24,52 @@ Additional LineageOS functions:
 EOF
 }
 
+function mk_timer()
+{
+    local start_time=$(date +"%s")
+    $@
+    local ret=$?
+    local end_time=$(date +"%s")
+    local tdiff=$(($end_time-$start_time))
+    local hours=$(($tdiff / 3600 ))
+    local mins=$((($tdiff % 3600) / 60))
+    local secs=$(($tdiff % 60))
+    local ncolors=$(tput colors 2>/dev/null)
+    echo
+    if [ $ret -eq 0 ] ; then
+        echo -n "#### make completed successfully "
+    else
+        echo -n "#### make failed to build some targets "
+    fi
+    if [ $hours -gt 0 ] ; then
+        printf "(%02g:%02g:%02g (hh:mm:ss))" $hours $mins $secs
+    elif [ $mins -gt 0 ] ; then
+        printf "(%02g:%02g (mm:ss))" $mins $secs
+    elif [ $secs -gt 0 ] ; then
+        printf "(%s seconds)" $secs
+    fi
+    echo " ####"
+    echo
+    return $ret
+}
+
 function brunch()
 {
     breakfast $*
     if [ $? -eq 0 ]; then
         mka bacon
+    else
+        echo "No such item in brunch menu. Try 'breakfast'"
+        return 1
+    fi
+    return $?
+}
+
+function brunchopen()
+{
+    breakfast $*
+    if [ $? -eq 0 ]; then
+        mka bacon && xdg-open $ANDROID_PRODUCT_OUT
     else
         echo "No such item in brunch menu. Try 'breakfast'"
         return 1
@@ -43,7 +84,7 @@ function breakfast()
     CM_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
-    for f in `/bin/ls vendor/cm/vendorsetup.sh 2> /dev/null`
+    for f in `/bin/ls vendor/altair/vendorsetup.sh 2> /dev/null`
         do
             echo "including $f"
             . $f
@@ -63,12 +104,16 @@ function breakfast()
             if [ -z "$variant" ]; then
                 variant="userdebug"
             fi
-
-            if ! check_product lineage_$target && check_product cm_$target; then
-                echo "** Warning: '$target' is using CM-based makefiles. This will be deprecated in the next major release."
-                lunch cm_$target-$variant
-            else
+            lunch altair_$target-$variant
+            if [ $? -ne 0 ]; then
+                # try Lineage
+                echo "** Warning: '$target' is using Lineage-based makefiles. This will be deprecated in the next major release."
                 lunch lineage_$target-$variant
+                if [ $? -ne 0 ]; then
+                    # try CM
+                    echo "** Warning: '$target' is using CM-based makefiles. This will be deprecated in the next major release."
+                    lunch cm_$target-$variant
+                fi
             fi
         fi
     fi
@@ -248,7 +293,7 @@ function cmremote()
     if [ -z "$GERRIT_REMOTE" ]
     then
         local GERRIT_REMOTE=$(git config --get remote.aosp.projectname | sed s#platform/#android/#g | sed s#/#_#g)
-        local PFX="LineageOS/"
+        local PFX="Altair-ROM/"
     fi
     local CMUSER=$(git config --get review.review.lineageos.org.username)
     if [ -z "$CMUSER" ]
@@ -684,27 +729,14 @@ function cmrebase() {
 }
 
 function mka() {
-    local T=$(gettop)
-    if [ "$T" ]; then
-        case `uname -s` in
-            Darwin)
-                make -C $T -j `sysctl hw.ncpu|cut -d" " -f2` "$@"
-                ;;
-            *)
-                mk_timer schedtool -B -n 10 -e ionice -n 7 make -C $T -j$(grep "^processor" /proc/cpuinfo | wc -l) "$@"
-                ;;
-        esac
-
-    else
-        echo "Couldn't locate the top of the tree.  Try setting TOP."
-    fi
+    m -j "$@"
 }
 
 function cmka() {
     if [ ! -z "$1" ]; then
         for i in "$@"; do
             case $i in
-                bacon|otapackage|systemimage)
+                altair|otapackage|systemimage)
                     mka installclean
                     mka $i
                     ;;
@@ -720,29 +752,6 @@ function cmka() {
     fi
 }
 
-function mms() {
-    local T=$(gettop)
-    if [ -z "$T" ]
-    then
-        echo "Couldn't locate the top of the tree.  Try setting TOP."
-        return 1
-    fi
-
-    case `uname -s` in
-        Darwin)
-            local NUM_CPUS=$(sysctl hw.ncpu|cut -d" " -f2)
-            ONE_SHOT_MAKEFILE="__none__" \
-                make -C $T -j $NUM_CPUS "$@"
-            ;;
-        *)
-            local NUM_CPUS=$(grep "^processor" /proc/cpuinfo | wc -l)
-            ONE_SHOT_MAKEFILE="__none__" \
-                mk_timer schedtool -B -n 1 -e ionice -n 1 \
-                make -C $T -j $NUM_CPUS "$@"
-            ;;
-    esac
-}
-
 function repolastsync() {
     RLSPATH="$ANDROID_BUILD_TOP/.repo/.repo_fetchtimes.json"
     RLSLOCAL=$(date -d "$(stat -c %z $RLSPATH)" +"%e %b %Y, %T %Z")
@@ -751,14 +760,7 @@ function repolastsync() {
 }
 
 function reposync() {
-    case `uname -s` in
-        Darwin)
-            repo sync -j 4 "$@"
-            ;;
-        *)
-            schedtool -B -n 1 -e ionice -n 1 `which repo` sync -j 4 "$@"
-            ;;
-    esac
+    repo sync -j 4 "$@"
 }
 
 function repodiff() {
@@ -930,7 +932,7 @@ alias cmkap='dopush cmka'
 
 function repopick() {
     T=$(gettop)
-    $T/vendor/cm/build/tools/repopick.py $@
+    $T/vendor/altair/build/tools/repopick.py $@
 }
 
 function fixup_common_out_dir() {
