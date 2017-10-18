@@ -139,6 +139,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Substratum
 
+# DU Utils Library
+PRODUCT_PACKAGES += \
+    org.dirtyunicorns.utils
+
+PRODUCT_BOOT_JARS += \
+    org.dirtyunicorns.utils
+
 # Exchange support
 PRODUCT_PACKAGES += \
     Exchange2
