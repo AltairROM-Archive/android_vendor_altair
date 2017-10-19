@@ -22,7 +22,7 @@ IMAGEHEIGHT="$IMAGEWIDTH"
 
 RESOLUTION=""$IMAGEWIDTH"x"$IMAGEHEIGHT""
 
-for part_cnt in 0 1 2 3 4
+for part_cnt in 0 1 2
 do
     mkdir -p $ANDROID_PRODUCT_OUT/obj/BOOTANIMATION/bootanimation/part$part_cnt
 done
