@@ -55,7 +55,7 @@ function brunch()
 {
     breakfast $*
     if [ $? -eq 0 ]; then
-        mka bacon
+        mka altair
     else
         echo "No such item in brunch menu. Try 'breakfast'"
         return 1
@@ -70,7 +70,7 @@ function breakfast()
     LINEAGE_DEVICES_ONLY="true"
     unset LUNCH_MENU_CHOICES
     add_lunch_combo full-eng
-    for f in `/bin/ls vendor/lineage/vendorsetup.sh 2> /dev/null`
+    for f in `/bin/ls vendor/altair/vendorsetup.sh 2> /dev/null`
         do
             echo "including $f"
             . $f
@@ -91,7 +91,7 @@ function breakfast()
                 variant="userdebug"
             fi
 
-            lunch lineage_$target-$variant
+            lunch altair_$target-$variant
         fi
     fi
     return $?
@@ -280,7 +280,7 @@ function lineageremote()
     if [ $LINEAGE = "false" ]
     then
         local PROJECT=$(echo $REMOTE | sed -e "s#platform/#android/#g; s#/#_#g")
-        local PFX="LineageOS/"
+        local PFX="Altair-ROM/"
     else
         local PROJECT=$REMOTE
     fi
@@ -742,7 +742,7 @@ function cmka() {
     if [ ! -z "$1" ]; then
         for i in "$@"; do
             case $i in
-                bacon|otapackage|systemimage)
+                altair|otapackage|systemimage)
                     mka installclean
                     mka $i
                     ;;
@@ -938,7 +938,7 @@ alias cmkap='dopush cmka'
 
 function repopick() {
     T=$(gettop)
-    $T/vendor/lineage/build/tools/repopick.py $@
+    $T/vendor/altair/build/tools/repopick.py $@
 }
 
 function fixup_common_out_dir() {
@@ -969,7 +969,7 @@ if [ -d $(gettop)/prebuilts/snapdragon-llvm/toolchains ]; then
             export SDCLANG=true
             export SDCLANG_PATH=$(gettop)/prebuilts/snapdragon-llvm/toolchains/llvm-Snapdragon_LLVM_for_Android_4.0/prebuilt/linux-x86_64/bin
             export SDCLANG_PATH_2=$(gettop)/prebuilts/snapdragon-llvm/toolchains/llvm-Snapdragon_LLVM_for_Android_4.0/prebuilt/linux-x86_64/bin
-            export SDCLANG_LTO_DEFS=$(gettop)/vendor/lineage/build/core/sdllvm-lto-defs.mk
+            export SDCLANG_LTO_DEFS=$(gettop)/vendor/altair/build/core/sdllvm-lto-defs.mk
             ;;
     esac
 fi

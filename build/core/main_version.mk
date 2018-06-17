@@ -8,7 +8,7 @@ ADDITIONAL_BUILD_PROPERTIES += \
 
 # LineageOS Platform Display Version
 ADDITIONAL_BUILD_PROPERTIES += \
-    ro.lineage.display.version=$(LINEAGE_DISPLAY_VERSION)
+    ro.lineage.display.version=$(PRODUCT_FULL_VERSION)
 
 # LineageOS Platform SDK Version
 ADDITIONAL_BUILD_PROPERTIES += \
