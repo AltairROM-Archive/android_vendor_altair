@@ -103,6 +103,12 @@ ifeq ($(WITH_TWRP),true)
 include vendor/altair/config/twrp.mk
 endif
 
+# Debuggable by default
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.service.adb.enable=1 \
+    persist.service.debuggable=1 \
+    persist.sys.usb.config=adb
+
 # Bootanimation
 PRODUCT_PACKAGES += \
     bootanimation.zip
