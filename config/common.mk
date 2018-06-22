@@ -288,6 +288,9 @@ endif
 PRODUCT_FULL_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(LINEAGE_BUILDTYPE)-$(shell date +%Y%m%d)
 LINEAGE_VERSION := Altair-$(PRODUCT_FULL_VERSION)-$(LINEAGE_BUILD)
 
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.lineageoms.version=$(LINEAGE_VERSION)
+
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     vendor/altair/build/target/product/security/lineage
 
