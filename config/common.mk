@@ -250,6 +250,13 @@ endif
 
 DEVICE_PACKAGE_OVERLAYS += vendor/altair/overlay/common
 
+# DU Utils Library
+PRODUCT_PACKAGES += \
+    org.dirtyunicorns.utils
+
+PRODUCT_BOOT_JARS += \
+    org.dirtyunicorns.utils
+
 PRODUCT_VERSION_MAJOR = 8.1
 PRODUCT_VERSION_MINOR = 0
 PRODUCT_VERSION_MAINTENANCE := 0
