@@ -48,3 +48,4 @@ altair: $(INTERNAL_OTA_PACKAGE_TARGET)
 	@echo -e ${CL_CYN}" MD5:"${CL_MAG}" `cat $(LINEAGE_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1`"${CL_RST}
 	@echo -e ${CL_CYN}"Size:"${CL_MAG}" `ls -lah $(LINEAGE_TARGET_PACKAGE) | cut -d ' ' -f 5`"${CL_RST}
 	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════"${CL_RST}
+	@echo " "
