@@ -61,10 +61,6 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/altair/config/permissions/lineage-sysconfig.xml:system/etc/sysconfig/lineage-sysconfig.xml
 
-# Signature compatibility validation
-PRODUCT_COPY_FILES += \
-    vendor/altair/prebuilt/common/bin/otasigcheck.sh:install/bin/otasigcheck.sh
-
 # init.d support
 PRODUCT_COPY_FILES += \
     vendor/altair/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
@@ -280,7 +276,7 @@ endif
 ifdef ALTAIR_RELEASE
     LINEAGE_BUILDTYPE := RELEASE
 endif
- 
+
 # Filter out random types, so it'll reset to UNOFFICIAL
 ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(LINEAGE_BUILDTYPE)),)
     LINEAGE_BUILDTYPE :=
