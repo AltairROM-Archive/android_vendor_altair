@@ -16,16 +16,6 @@
 # -----------------------------------------------------------------
 # Lineage OTA update package
 
-ifneq ($(BUILD_WITH_COLORS),0)
-  CL_RED="\033[31m"
-  CL_GRN="\033[32m"
-  CL_YLW="\033[33m"
-  CL_BLU="\033[34m"
-  CL_MAG="\033[35m"
-  CL_CYN="\033[36m"
-  CL_RST="\033[0m"
-endif
-
 LINEAGE_TARGET_PACKAGE := $(PRODUCT_OUT)/$(LINEAGE_VERSION).zip
 
 .PHONY: altair
@@ -35,17 +25,17 @@ altair: $(INTERNAL_OTA_PACKAGE_TARGET)
 	@echo " "
 	@echo " "
 	@echo " "
-	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════"${CL_RST}
-	@echo -e ${CL_GRN}" █████╗ ██╗  ████████╗ █████╗ ██╗██████╗     ██████╗  ██████╗ ███╗   ███╗"${CL_RST}
-	@echo -e ${CL_GRN}"██╔══██╗██║  ╚══██╔══╝██╔══██╗██║██╔══██╗    ██╔══██╗██╔═══██╗████╗ ████║"${CL_RST}
-	@echo -e ${CL_GRN}"███████║██║     ██║   ███████║██║██████╔╝    ██████╔╝██║   ██║██╔████╔██║"${CL_RST}
-	@echo -e ${CL_GRN}"██╔══██║██║     ██║   ██╔══██║██║██╔══██╗    ██╔══██╗██║   ██║██║╚██╔╝██║"${CL_RST}
-	@echo -e ${CL_GRN}"██║  ██║███████╗██║   ██║  ██║██║██║  ██║    ██║  ██║╚██████╔╝██║ ╚═╝ ██║"${CL_RST}
-	@echo -e ${CL_GRN}"╚═╝  ╚═╝╚══════╝╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝    ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝"${CL_RST}
-	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════"${CL_RST}
-	@echo -e ${CL_CYN}"Path:"${CL_MAG} $(PRODUCT_OUT)${CL_RST}
-	@echo -e ${CL_CYN}"File:"${CL_MAG} $(LINEAGE_VERSION)${CL_RST}
-	@echo -e ${CL_CYN}" MD5:"${CL_MAG}" `cat $(LINEAGE_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1`"${CL_RST}
-	@echo -e ${CL_CYN}"Size:"${CL_MAG}" `ls -lah $(LINEAGE_TARGET_PACKAGE) | cut -d ' ' -f 5`"${CL_RST}
-	@echo -e ${CL_YLW}"═════════════════════════════════════════════════════════════════════════"${CL_RST}
+	@echo -e ${CL_WHT}"═══════════════════════════════════════════════════════════════════════════"${CL_RST}
+	@echo -e ${CL_BLU}"  █████╗ ██╗  ████████╗ █████╗ ██╗██████╗     ██████╗  ██████╗ ███╗   ███╗ "${CL_RST}
+	@echo -e ${CL_BLU}" ██╔══██╗██║  ╚══██╔══╝██╔══██╗██║██╔══██╗    ██╔══██╗██╔═══██╗████╗ ████║ "${CL_RST}
+	@echo -e ${CL_BLU}" ███████║██║     ██║   ███████║██║██████╔╝    ██████╔╝██║   ██║██╔████╔██║ "${CL_RST}
+	@echo -e ${CL_BLU}" ██╔══██║██║     ██║   ██╔══██║██║██╔══██╗    ██╔══██╗██║   ██║██║╚██╔╝██║ "${CL_RST}
+	@echo -e ${CL_BLU}" ██║  ██║███████╗██║   ██║  ██║██║██║  ██║    ██║  ██║╚██████╔╝██║ ╚═╝ ██║ "${CL_RST}
+	@echo -e ${CL_BLU}" ╚═╝  ╚═╝╚══════╝╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝    ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝ "${CL_RST}
+	@echo -e ${CL_WHT}"═══════════════════════════════════════════════════════════════════════════"${CL_RST}
+	@echo -e ${CL_WHT}" Path:"${CL_BOLD}${CL_GRN} $(PRODUCT_OUT)${CL_RST}
+	@echo -e ${CL_WHT}" File:"${CL_BOLD}${CL_GRN} $(LINEAGE_VERSION)${CL_RST}
+	@echo -e ${CL_WHT}"  MD5:"${CL_BOLD}${CL_GRN}" `cat $(LINEAGE_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1`"${CL_RST}
+	@echo -e ${CL_WHT}" Size:"${CL_BOLD}${CL_GRN}" `ls -lah $(LINEAGE_TARGET_PACKAGE) | cut -d ' ' -f 5`"${CL_RST}
+	@echo -e ${CL_WHT}"═══════════════════════════════════════════════════════════════════════════"${CL_RST}
 	@echo " "
