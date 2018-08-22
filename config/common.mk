@@ -48,16 +48,16 @@ PRODUCT_COPY_FILES += \
 
 ifeq ($(AB_OTA_UPDATER),true)
 PRODUCT_COPY_FILES += \
-    vendor/lineage/prebuilt/common/bin/backuptool_ab.sh:system/bin/backuptool_ab.sh \
-    vendor/lineage/prebuilt/common/bin/backuptool_ab.functions:system/bin/backuptool_ab.functions \
-    vendor/lineage/prebuilt/common/bin/backuptool_postinstall.sh:system/bin/backuptool_postinstall.sh
+    vendor/altair/prebuilt/common/bin/backuptool_ab.sh:system/bin/backuptool_ab.sh \
+    vendor/altair/prebuilt/common/bin/backuptool_ab.functions:system/bin/backuptool_ab.functions \
+    vendor/altair/prebuilt/common/bin/backuptool_postinstall.sh:system/bin/backuptool_postinstall.sh
 endif
 
 # Backup Services whitelist
 PRODUCT_COPY_FILES += \
     vendor/altair/config/permissions/backup.xml:system/etc/sysconfig/backup.xml
 
-# Lineage-specific broadcast actions whitelist
+# Altair-specific broadcast actions whitelist
 PRODUCT_COPY_FILES += \
     vendor/altair/config/permissions/lineage-sysconfig.xml:system/etc/sysconfig/lineage-sysconfig.xml
 
@@ -72,7 +72,7 @@ PRODUCT_COPY_FILES += \
     vendor/altair/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit
 endif
 
-# Copy all Lineage-specific init rc files
+# Copy all Altair-specific init rc files
 $(foreach f,$(wildcard vendor/altair/prebuilt/common/etc/init/*.rc),\
 	$(eval PRODUCT_COPY_FILES += $(f):system/etc/init/$(notdir $f)))
 
@@ -88,12 +88,12 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     frameworks/base/data/keyboards/Vendor_045e_Product_028e.kl:system/usr/keylayout/Vendor_045e_Product_0719.kl
 
-# This is Lineage!
+# This is Altair!
 PRODUCT_COPY_FILES += \
     vendor/altair/config/permissions/org.lineageos.android.xml:system/etc/permissions/org.lineageos.android.xml \
     vendor/altair/config/permissions/privapp-permissions-lineage.xml:system/etc/permissions/privapp-permissions-lineage.xml
 
-# Include Lineage audio files
+# Include Altair audio files
 include vendor/altair/config/lineage_audio.mk
 
 ifneq ($(TARGET_DISABLE_LINEAGE_SDK), true)
@@ -116,7 +116,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     bootanimation.zip
 
-# Required Lineage packages
+# Required Altair packages
 PRODUCT_PACKAGES += \
     LineageParts \
     Development \
@@ -141,7 +141,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_BOOT_JARS += \
     org.dirtyunicorns.utils
 
-# Custom Lineage packages
+# Custom Altair packages
 PRODUCT_PACKAGES += \
     AudioFX \
     LineageSettingsProvider \
@@ -174,7 +174,7 @@ PRODUCT_PACKAGES += \
     LineageRedAccent \
     LineageYellowAccent
 
-# Extra tools in Lineage
+# Extra tools in Altair
 PRODUCT_PACKAGES += \
     7z \
     awk \
@@ -197,7 +197,7 @@ PRODUCT_PACKAGES += \
     charger_res_images
 
 # Custom off-mode charger
-ifeq ($(WITH_LINEAGE_CHARGER),true)
+ifeq ($(WITH_ALTAIR_CHARGER),true)
 PRODUCT_PACKAGES += \
     lineage_charger_res_images \
     font_log.png \
@@ -257,68 +257,68 @@ PRODUCT_VERSION_MINOR = 0
 PRODUCT_VERSION_MAINTENANCE := 0
 
 ifeq ($(TARGET_VENDOR_SHOW_MAINTENANCE_VERSION),true)
-    LINEAGE_VERSION_MAINTENANCE := $(PRODUCT_VERSION_MAINTENANCE)
+    ALTAIR_VERSION_MAINTENANCE := $(PRODUCT_VERSION_MAINTENANCE)
 else
-    LINEAGE_VERSION_MAINTENANCE := 0
+    ALTAIR_VERSION_MAINTENANCE := 0
 endif
 
-# Set LINEAGE_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
+# Set ALTAIR_BUILDTYPE from the env RELEASE_TYPE, for jenkins compat
 
 ifdef ALTAIR_NIGHTLY
-    LINEAGE_BUILDTYPE := NIGHTLY
+    ALTAIR_BUILDTYPE := NIGHTLY
 endif
 ifdef ALTAIR_EXPERIMENTAL
-    LINEAGE_BUILDTYPE := EXPERIMENTAL
+    ALTAIR_BUILDTYPE := EXPERIMENTAL
 endif
 ifdef ALTAIR_RELEASE
-    LINEAGE_BUILDTYPE := RELEASE
+    ALTAIR_BUILDTYPE := RELEASE
 endif
 
 # Filter out random types, so it'll reset to UNOFFICIAL
-ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(LINEAGE_BUILDTYPE)),)
-    LINEAGE_BUILDTYPE :=
+ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(ALTAIR_BUILDTYPE)),)
+    ALTAIR_BUILDTYPE :=
 endif
 
-ifndef LINEAGE_BUILDTYPE
-    # If LINEAGE_BUILDTYPE is not defined, set to UNOFFICIAL
-    LINEAGE_BUILDTYPE := UNOFFICIAL
-    LINEAGE_EXTRAVERSION :=
+ifndef ALTAIR_BUILDTYPE
+    # If ALTAIR_BUILDTYPE is not defined, set to UNOFFICIAL
+    ALTAIR_BUILDTYPE := UNOFFICIAL
+    ALTAIR_EXTRAVERSION :=
 endif
 
-ifeq ($(LINEAGE_BUILDTYPE), UNOFFICIAL)
+ifeq ($(ALTAIR_BUILDTYPE), UNOFFICIAL)
     ifneq ($(TARGET_UNOFFICIAL_BUILD_ID),)
-        LINEAGE_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
+        ALTAIR_EXTRAVERSION := -$(TARGET_UNOFFICIAL_BUILD_ID)
     endif
 endif
 
-PRODUCT_FULL_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(LINEAGE_BUILDTYPE)-$(shell date +%Y%m%d)
-LINEAGE_VERSION := Altair-$(PRODUCT_FULL_VERSION)-$(LINEAGE_BUILD)
+PRODUCT_FULL_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(ALTAIR_BUILDTYPE)-$(shell date +%Y%m%d)
+ALTAIR_VERSION := Altair-$(PRODUCT_FULL_VERSION)-$(ALTAIR_BUILD)
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.lineageoms.version=$(LINEAGE_VERSION)
+    ro.lineageoms.version=$(ALTAIR_VERSION)
 
 PRODUCT_EXTRA_RECOVERY_KEYS += \
     vendor/altair/build/target/product/security/lineage
 
 -include vendor/lineage-priv/keys/keys.mk
 
-LINEAGE_DISPLAY_VERSION := $(LINEAGE_VERSION)
+ALTAIR_DISPLAY_VERSION := $(ALTAIR_VERSION)
 
 ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),)
 ifneq ($(PRODUCT_DEFAULT_DEV_CERTIFICATE),build/target/product/security/testkey)
-    ifneq ($(LINEAGE_BUILDTYPE), UNOFFICIAL)
+    ifneq ($(ALTAIR_BUILDTYPE), UNOFFICIAL)
         ifndef TARGET_VENDOR_RELEASE_BUILD_ID
-            ifneq ($(LINEAGE_EXTRAVERSION),)
-                # Remove leading dash from LINEAGE_EXTRAVERSION
-                LINEAGE_EXTRAVERSION := $(shell echo $(LINEAGE_EXTRAVERSION) | sed 's/-//')
-                TARGET_VENDOR_RELEASE_BUILD_ID := $(LINEAGE_EXTRAVERSION)
+            ifneq ($(ALTAIR_EXTRAVERSION),)
+                # Remove leading dash from ALTAIR_EXTRAVERSION
+                ALTAIR_EXTRAVERSION := $(shell echo $(ALTAIR_EXTRAVERSION) | sed 's/-//')
+                TARGET_VENDOR_RELEASE_BUILD_ID := $(ALTAIR_EXTRAVERSION)
             else
                 TARGET_VENDOR_RELEASE_BUILD_ID := $(shell date -u +%Y%m%d)
             endif
         else
             TARGET_VENDOR_RELEASE_BUILD_ID := $(TARGET_VENDOR_RELEASE_BUILD_ID)
         endif
-        LINEAGE_DISPLAY_VERSION=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)
+        ALTAIR_DISPLAY_VERSION=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(TARGET_VENDOR_RELEASE_BUILD_ID)
     endif
 endif
 endif

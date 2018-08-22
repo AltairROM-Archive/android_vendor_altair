@@ -18,4 +18,4 @@ $(call inherit-product, vendor/altair/config/common.mk)
 # Allow building otatools
 TARGET_FORCE_OTA_PACKAGE := true
 
-PRODUCT_NAME := lineage_arm64
+PRODUCT_NAME := altair_arm64

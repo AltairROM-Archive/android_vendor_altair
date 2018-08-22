@@ -1,5 +1,5 @@
 # Charger
-ifeq ($(WITH_LINEAGE_CHARGER),true)
+ifeq ($(WITH_ALTAIR_CHARGER),true)
     BOARD_HAL_STATIC_LIBRARIES := libhealthd.lineage
 endif
 
