@@ -250,6 +250,8 @@ endif
 
 DEVICE_PACKAGE_OVERLAYS += vendor/altair/overlay/common
 
+-include vendor/altair/config/prebuilt.mk
+
 # DU Utils Library
 PRODUCT_PACKAGES += \
     org.dirtyunicorns.utils
