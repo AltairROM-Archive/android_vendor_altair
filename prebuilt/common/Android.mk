@@ -12,6 +12,16 @@ include $(BUILD_PREBUILT)
 # Prebuilt APKs
 #
 include $(CLEAR_VARS)
+LOCAL_MODULE := MagiskManager
+LOCAL_MODULE_TAGS := optional
+LOCAL_MODULE_CLASS := APPS
+LOCAL_BUILT_MODULE_STEM := package.apk
+LOCAL_CERTIFICATE := PRESIGNED
+LOCAL_DEX_PREOPT := false
+LOCAL_SRC_FILES := app/MagiskManager.apk
+include $(BUILD_PREBUILT)
+#
+include $(CLEAR_VARS)
 LOCAL_MODULE := Substratum
 LOCAL_MODULE_TAGS := optional
 LOCAL_MODULE_CLASS := APPS
