@@ -1,4 +1,5 @@
-for combo in $(curl -s https://raw.githubusercontent.com/LineageOS/hudson/master/lineage-build-targets | sed -e 's/#.*$//' | grep lineage-16.0 | awk '{printf "lineage_%s-%s\n", $1, $2}')
+platform=p
+for combo in $(curl -s https://raw.githubusercontent.com/AltairROM-Devices/devices/master/$platform/build-targets | sed -e 's/#.*$//' | grep $platform | awk '{printf "altair_%s-%s\n", $1, $2}')
 do
     add_lunch_combo $combo
 done
