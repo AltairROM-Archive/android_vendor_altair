@@ -16,7 +16,7 @@
 # -----------------------------------------------------------------
 # Lineage OTA update package
 
-ALTAIR_TARGET_PACKAGE := $(PRODUCT_OUT)/$(ALTAIR_VERSION).zip
+ALTAIR_TARGET_PACKAGE := $(PRODUCT_OUT)/Altair-$(ALTAIR_VERSION).zip
 
 .PHONY: altair
 altair: $(INTERNAL_OTA_PACKAGE_TARGET)
@@ -34,7 +34,7 @@ altair: $(INTERNAL_OTA_PACKAGE_TARGET)
 	@echo -e ${CL_BLU}" ╚═╝  ╚═╝╚══════╝╚═╝   ╚═╝  ╚═╝╚═╝╚═╝  ╚═╝    ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝ "${CL_RST}
 	@echo -e ${CL_WHT}"═══════════════════════════════════════════════════════════════════════════"${CL_RST}
 	@echo -e ${CL_WHT}" Path:"${CL_BOLD}${CL_GRN} $(PRODUCT_OUT)${CL_RST}
-	@echo -e ${CL_WHT}" File:"${CL_BOLD}${CL_GRN} $(ALTAIR_VERSION)${CL_RST}
+	@echo -e ${CL_WHT}" File:"${CL_BOLD}${CL_GRN} Altair-$(ALTAIR_VERSION).zip${CL_RST}
 	@echo -e ${CL_WHT}"  MD5:"${CL_BOLD}${CL_GRN}" `cat $(ALTAIR_TARGET_PACKAGE).md5sum | cut -d ' ' -f 1`"${CL_RST}
 	@echo -e ${CL_WHT}" Size:"${CL_BOLD}${CL_GRN}" `ls -lah $(ALTAIR_TARGET_PACKAGE) | cut -d ' ' -f 5`"${CL_RST}
 	@echo -e ${CL_WHT}"═══════════════════════════════════════════════════════════════════════════"${CL_RST}
