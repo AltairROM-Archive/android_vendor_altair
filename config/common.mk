@@ -96,6 +96,9 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     vendor/altair/config/permissions/lineage-power-whitelist.xml:system/etc/sysconfig/lineage-power-whitelist.xml
 
+# Include AOSP audio files
+include vendor/altair/config/aosp_audio.mk
+
 # Include Altair audio files
 include vendor/altair/config/altair_audio.mk
 
