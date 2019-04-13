@@ -259,22 +259,27 @@ endif
 
 ifdef ALTAIR_NIGHTLY
     CM_BUILDTYPE := NIGHTLY
+    DISPLAY_BUILDTYPE := Nightly
 endif
 ifdef ALTAIR_EXPERIMENTAL
     CM_BUILDTYPE := EXPERIMENTAL
+    DISPLAY_BUILDTYPE := Experimental
 endif
 ifdef ALTAIR_RELEASE
     CM_BUILDTYPE := RELEASE
+    DISPLAY_BUILDTYPE := Official
 endif
 
 # Filter out random types, so it'll reset to UNOFFICIAL
 ifeq ($(filter RELEASE NIGHTLY SNAPSHOT EXPERIMENTAL,$(CM_BUILDTYPE)),)
     CM_BUILDTYPE :=
+    DISPLAY_BUILDTYPE :=
 endif
 
 ifndef CM_BUILDTYPE
     # If CM_BUILDTYPE is not defined, set to UNOFFICIAL
     CM_BUILDTYPE := UNOFFICIAL
+    DISPLAY_BUILDTYPE := Unofficial
 endif
 
 ifeq ($(CM_BUILDTYPE), UNOFFICIAL)
@@ -283,12 +288,12 @@ ifeq ($(CM_BUILDTYPE), UNOFFICIAL)
     endif
 endif
 
-PRODUCT_FULL_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(CM_BUILDTYPE)-$(shell date +%Y%m%d)
+PRODUCT_FULL_VERSION := $(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR)-$(DISPLAY_BUILDTYPE)-$(shell date +%Y%m%d)
 LINEAGE_VERSION := Altair-$(PRODUCT_FULL_VERSION)-$(CM_BUILD)
 
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.cm.version=$(PRODUCT_FULL_VERSION) \
-    ro.cm.releasetype=$(CM_BUILDTYPE) \
+    ro.cm.releasetype=$(DISPLAY_BUILDTYPE) \
     ro.cm.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
     ro.modversion=$(LINEAGE_VERSION) \
     ro.cmlegal.url=https://lineageos.org/legal \
