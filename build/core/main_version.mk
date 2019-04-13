@@ -1,7 +1,7 @@
 # LineageOS System Version
 ADDITIONAL_BUILD_PROPERTIES += \
     ro.altair.version=$(ALTAIR_VERSION) \
-    ro.altair.releasetype=$(ALTAIR_BUILDTYPE) \
+    ro.altair.releasetype=$(DISPLAY_BUILDTYPE) \
     ro.altair.build.version=$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR) \
     ro.modversion=$(ALTAIR_VERSION) \
     ro.lineagelegal.url=https://lineageos.org/legal
