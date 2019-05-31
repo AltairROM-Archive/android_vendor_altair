@@ -140,6 +140,7 @@ PRODUCT_PACKAGES += \
 # Custom Altair packages
 PRODUCT_PACKAGES += \
     AudioFX \
+    Backgrounds \
     LineageSettingsProvider \
     Eleven \
     ExactCalculator \
@@ -147,7 +148,6 @@ PRODUCT_PACKAGES += \
     LockClock \
     TrebuchetQuickStep \
     Updater \
-    WallpaperPicker \
     WeatherProvider
 
 # Exchange support
