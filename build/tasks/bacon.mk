@@ -22,6 +22,7 @@ LINEAGE_TARGET_PACKAGE := $(PRODUCT_OUT)/$(LINEAGE_VERSION).zip
 altair: $(INTERNAL_OTA_PACKAGE_TARGET)
 	$(hide) ln -f $(INTERNAL_OTA_PACKAGE_TARGET) $(LINEAGE_TARGET_PACKAGE)
 	$(hide) $(MD5SUM) $(LINEAGE_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(LINEAGE_TARGET_PACKAGE).md5sum
+	$(hide) rm -rf $(call intermediates-dir-for,PACKAGING,target_files)
 	@echo " "
 	@echo " "
 	@echo " "
