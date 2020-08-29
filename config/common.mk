@@ -28,8 +28,7 @@ endif
 PRODUCT_COPY_FILES += \
     vendor/altair/prebuilt/common/bin/backuptool.sh:install/bin/backuptool.sh \
     vendor/altair/prebuilt/common/bin/backuptool.functions:install/bin/backuptool.functions \
-    vendor/altair/prebuilt/common/bin/50-lineage.sh:system/addon.d/50-lineage.sh \
-    vendor/altair/prebuilt/common/bin/blacklist:system/addon.d/blacklist
+    vendor/altair/prebuilt/common/bin/50-lineage.sh:system/addon.d/50-lineage.sh
 
 ifeq ($(AB_OTA_UPDATER),true)
 PRODUCT_COPY_FILES += \
